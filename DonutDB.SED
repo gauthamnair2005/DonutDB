@@ -1,0 +1,49 @@
+[Version]
+Class=IEXPRESS
+SEDVersion=3
+[Options]
+PackagePurpose=InstallApp
+ShowInstallProgramWindow=3
+HideExtractAnimation=0
+UseLongFileName=0
+InsideCompressed=0
+CAB_FixedSize=0
+CAB_ResvCodeSigning=0
+RebootMode=N
+InstallPrompt=%InstallPrompt%
+DisplayLicense=%DisplayLicense%
+FinishMessage=%FinishMessage%
+TargetName=%TargetName%
+FriendlyName=%FriendlyName%
+AppLaunched=%AppLaunched%
+PostInstallCmd=%PostInstallCmd%
+AdminQuietInstCmd=%AdminQuietInstCmd%
+UserQuietInstCmd=%UserQuietInstCmd%
+SourceFiles=SourceFiles
+[Strings]
+InstallPrompt=Do you want to install DonutDB 2023 Velocity Now?
+DisplayLicense=C:\Py\License.txt
+FinishMessage=Installation is Done..!
+TargetName=C:\Program FIles (x86)\Donut\DB\2023 Velocity\.EXE
+FriendlyName=DonutDB 2023 Velocity Setup
+AppLaunched=start
+PostInstallCmd=https://sites.google.com/view/donutdb/instructions/
+AdminQuietInstCmd=
+UserQuietInstCmd=
+FILE0="a.tds"
+FILE1="donutdb.bmp"
+FILE2="DonutDB.exe"
+FILE3="donutdb.ico"
+FILE4="donutdb.png"
+FILE5="donutdb.tds"
+FILE6="License.txt"
+[SourceFiles]
+SourceFiles0=C:\Py\
+[SourceFiles0]
+%FILE0%=
+%FILE1%=
+%FILE2%=
+%FILE3%=
+%FILE4%=
+%FILE5%=
+%FILE6%=
