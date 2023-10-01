@@ -92,6 +92,8 @@ if sys.platform == "win32":
                     print("exit - exit the current database connection")
                     print("create table <t_name> ... - create the table")
                     print("select  - select command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
+                    print("alter  - alter command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
+                    print("update  - update command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
                     print(Fore.YELLOW + "show tables - show all the tables available in current database")
                     print("-----------------------------------------------------------------------" + Style.RESET_ALL)
                 else:
@@ -161,7 +163,7 @@ if sys.platform == "win32":
             elif command == "help":
                 print(Fore.YELLOW + "DonutDB Help")
                 print("----------------------------------------------------")
-                print("exit - quit the appkication")
+                print("exit - quit the application")
                 print("create database <db_name> - create the database")
                 print("use <db_name> - use a particular database")
                 print("show databases - show all the databases available")
@@ -244,6 +246,8 @@ if sys.platform == "win32":
                         print("exit - exit the current database connection")
                         print("create table <t_name> ... - create the table")
                         print("select  - select command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
+                        print("alter  - alter command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
+                        print("update  - update command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
                         print(Fore.YELLOW + "show tables - show all the tables available in current database")
                         print("-----------------------------------------------------------------------" + Style.RESET_ALL)
                     else:
@@ -313,7 +317,7 @@ if sys.platform == "win32":
                 elif command == "help":
                     print(Fore.YELLOW + "DonutDB Help")
                     print("----------------------------------------------------")
-                    print("exit - quit the appkication")
+                    print("exit - quit the application")
                     print("create database <db_name> - create the database")
                     print("use <db_name> - use a particular database")
                     print("show databases - show all the databases available")
@@ -399,6 +403,8 @@ else:
                     print("exit - exit the current database connection")
                     print("create table <t_name> ... - create the table")
                     print("select  - select command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
+                    print("alter  - alter command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
+                    print("update  - update command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
                     print(Fore.YELLOW + "show tables - show all the tables available in current database")
                     print("-----------------------------------------------------------------------" + Style.RESET_ALL)
                 else:
@@ -468,7 +474,7 @@ else:
             elif command == "help":
                 print(Fore.YELLOW + "DonutDB Help")
                 print("----------------------------------------------------")
-                print("exit - quit the appkication")
+                print("exit - quit the application")
                 print("create database <db_name> - create the database")
                 print("use <db_name> - use a particular database")
                 print("show databases - show all the databases available")
@@ -551,6 +557,8 @@ else:
                         print("exit - exit the current database connection")
                         print("create table <t_name> ... - create the table")
                         print("select  - select command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
+                        print("alter  - alter command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
+                        print("update  - update command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
                         print(Fore.YELLOW + "show tables - show all the tables available in current database")
                         print("-----------------------------------------------------------------------" + Style.RESET_ALL)
                     else:
@@ -620,7 +628,7 @@ else:
                 elif command == "help":
                     print(Fore.YELLOW + "DonutDB Help")
                     print("----------------------------------------------------")
-                    print("exit - quit the appkication")
+                    print("exit - quit the application")
                     print("create database <db_name> - create the database")
                     print("use <db_name> - use a particular database")
                     print("show databases - show all the databases available")
