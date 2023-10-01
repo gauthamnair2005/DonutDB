@@ -12,6 +12,7 @@ PROMPT = "DonutDB $ "
 CREATE_DB = "create database"
 USE_DB = "use"
 DATABASE_DIR = "databases"
+DELCODE = "cd databases && del"
 if sys.platform == "win32":
     # Clear the screen
     os.system("cls")
@@ -38,6 +39,24 @@ if sys.platform == "win32":
                 except sqlite3.Error as err:
                     print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
             # If the command is 'show databases', list the files in the current directory
+            elif "alter" in command or "ALTER" in command:
+                try:
+                    cursor.execute(command)
+                    print("Table Altered")
+                except sqlite3.Error as err:
+                    print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
+            elif "delete" in command or "DELETE" in command:
+                try:
+                    cursor.execute(command)
+                    print("Deleted")
+                except sqlite3.Error as err:
+                    print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
+            elif "update" in command or "UPDATE" in command:
+                try:
+                    cursor.execute(command)
+                    print("Table Updated")
+                except sqlite3.Error as err:
+                    print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
             elif command == "show databases" or command == "SHOW DATABASES":
                 databases_dir = os.path.join(os.path.dirname(__file__), 'databases')
                 files = os.listdir(databases_dir)
@@ -110,12 +129,15 @@ if sys.platform == "win32":
                 print(Fore.RED + "Please enter a valid database name" + Style.RESET_ALL)
         # If the command is 'exit', break out of the loop and exit the program
         elif command.startswith(USE_DB):
-            db_name = command.split(" ")[1] # Remove 'use database' and any whitespace from the command
+            db_name = command.split(" ")[1] # Remove 'use' and any whitespace from the command
             db_path = os.path.join(DATABASE_DIR, db_name)
-            if db_name: # If there is a database name given, call usee_db with it
-                use_db(db_path)
-            else: # Otherwise, print an error message
-                print(Fore.RED + "Please enter a valid database name" + Style.RESET_ALL)
+            if os.path.isfile(db_name):
+                if db_name: # If there is a database name given, call usee_db with it
+                    use_db(db_path)
+                else: # Otherwise, print an error message
+                    print(Fore.RED + "Database Corrupted of Unreadable" + Style.RESET_ALL)
+            else:
+                print(Fore.RED + "Database not found, use " + Style.RESET_ALL + Fore.GREEN + "create database",db_name + Style.RESET_ALL + Fore.RED + " instead to create one.!" + Style.RESET_ALL)
         # If the command is 'exit', break out of the loop and exit the program
         elif command == "show databases" or command == "SHOW DATABASES":
             databases_dir = os.path.join(os.path.dirname(__file__), 'databases')
@@ -123,7 +145,10 @@ if sys.platform == "win32":
             print(tabulate([files], headers=['Databases'], tablefmt='orgtbl'))
         elif command == "exit":
             break
-        # Otherwise, print an error message
+        elif "drop database" in command:
+            drop_name = command.split(" ")[2]
+            path_drop = os.path.join(DATABASE_DIR, drop_name)
+            os.remove(path_drop)
         elif command == "help":
             print(Fore.YELLOW + "DonutDB Help")
             print("----------------------------------------------------")
@@ -136,7 +161,7 @@ if sys.platform == "win32":
             print(Fore.RED + "Invalid command" + Style.RESET_ALL)
 else:
     # Clear the screen
-    os.system("clear")
+    os.system("cls")
     # Print some information about DonutDB
     print(Fore.CYAN + f"Welcome to DonutDB {VERSION} by {AUTHOR}")
     print("A lightweight and fast relational database management system written in Python")
@@ -160,6 +185,24 @@ else:
                 except sqlite3.Error as err:
                     print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
             # If the command is 'show databases', list the files in the current directory
+            elif "alter" in command or "ALTER" in command:
+                try:
+                    cursor.execute(command)
+                    print("Table Altered")
+                except sqlite3.Error as err:
+                    print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
+            elif "delete" in command or "DELETE" in command:
+                try:
+                    cursor.execute(command)
+                    print("Deleted")
+                except sqlite3.Error as err:
+                    print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
+            elif "update" in command or "UPDATE" in command:
+                try:
+                    cursor.execute(command)
+                    print("Table Updated")
+                except sqlite3.Error as err:
+                    print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
             elif command == "show databases" or command == "SHOW DATABASES":
                 databases_dir = os.path.join(os.path.dirname(__file__), 'databases')
                 files = os.listdir(databases_dir)
