@@ -8,7 +8,7 @@ from tabulate import tabulate # for databases listing in tabular form
 import getpass
 import hashlib
 # Define constants
-VERSION = "24.00.00.128+ Velocity Developer Preview"
+VERSION = "24.00.00.256+ Velocity Developer Preview"
 AUTHOR = "Gautham Nair"
 PROMPT = "DonutDB $ "
 CREATE_DB = "create database"
@@ -26,7 +26,7 @@ if sys.platform == "win32":
         file.close()
         print()
         # Print some information about DonutDB
-        print(Fore.CYAN + f"Welcome to DonutDB {VERSION} by {AUTHOR}")
+        print(Fore.CYAN + f"DonutDB {VERSION} \n - {AUTHOR}")
         print("A lightweight and fast relational database management system written in Python")
         print("Enter 'help' for more information" + Style.RESET_ALL)
         # Define a function to execute SQL commands on a database
@@ -47,7 +47,17 @@ if sys.platform == "win32":
                         print(table) # Print the table
                     except sqlite3.Error as err:
                         print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
-                # If the command is 'show databases', list the files in the current directory
+                elif "desc" in command or "DESC" in command:
+                    try:
+                        desc_candidate = command.split(" ")[1]
+                        cursor.execute(f"PRAGMA table_info({desc_candidate})")
+                        rows = cursor.fetchall()
+                        desc_table = PrettyTable(["Column ID","Column Name","Data Type","Not Null?","Default Value","Primary Key"])
+                        for row in rows:
+                            desc_table.add_row(row)
+                        print(desc_table)
+                    except sqlite3.Error as err:
+                        print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
                 elif "alter" in command or "ALTER" in command:
                     try:
                         cursor.execute(command)
@@ -89,13 +99,14 @@ if sys.platform == "win32":
                 elif command == "help":
                     print(Fore.YELLOW + "DonutDB Help")
                     print("-----------------------------------------------------------------------")
-                    print("exit - exit the current database connection")
-                    print("create table <t_name> ... - create the table")
-                    print("select  - select command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                    print("alter  - alter command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                    print("update  - update command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                    print(Fore.YELLOW + "show tables - show all the tables available in current database")
-                    print("-----------------------------------------------------------------------" + Style.RESET_ALL)
+                    print("exit - exit the current database connection" + Style.RESET_ALL)
+                    print(Fore.WHITE + "create table <t_name> ... - create the table")
+                    print("desc - describe command")
+                    print("select  - select command ")
+                    print("alter  - alter command ")
+                    print("update  - update command ")
+                    print("show tables - show all the tables available in current database")
+                    print(Fore.YELLOW + "-----------------------------------------------------------------------" + Style.RESET_ALL)
                 else:
                     try:
                         cursor.execute(command)
@@ -180,7 +191,7 @@ if sys.platform == "win32":
             print("Access Granted..!")
             print()
             # Print some information about DonutDB
-            print(Fore.CYAN + f"Welcome to DonutDB {VERSION} by {AUTHOR}")
+            print(Fore.CYAN + f"DonutDB {VERSION} \n - {AUTHOR}")
             print("A lightweight and fast relational database management system written in Python")
             print("Enter 'help' for more information" + Style.RESET_ALL)
             # Define a function to execute SQL commands on a database
@@ -201,7 +212,17 @@ if sys.platform == "win32":
                             print(table) # Print the table
                         except sqlite3.Error as err:
                             print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
-                    # If the command is 'show databases', list the files in the current directory
+                    elif "desc" in command or "DESC" in command:
+                        try:
+                            desc_candidate = command.split(" ")[1]
+                            cursor.execute(f"PRAGMA table_info({desc_candidate})")
+                            rows = cursor.fetchall()
+                            desc_table = PrettyTable(["Column ID","Column Name","Data Type","Not Null?","Default Value","Primary Key"])
+                            for row in rows:
+                                desc_table.add_row(row)
+                            print(desc_table)
+                        except sqlite3.Error as err:
+                            print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
                     elif "alter" in command or "ALTER" in command:
                         try:
                             cursor.execute(command)
@@ -243,13 +264,14 @@ if sys.platform == "win32":
                     elif command == "help":
                         print(Fore.YELLOW + "DonutDB Help")
                         print("-----------------------------------------------------------------------")
-                        print("exit - exit the current database connection")
-                        print("create table <t_name> ... - create the table")
-                        print("select  - select command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                        print("alter  - alter command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                        print("update  - update command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                        print(Fore.YELLOW + "show tables - show all the tables available in current database")
-                        print("-----------------------------------------------------------------------" + Style.RESET_ALL)
+                        print("exit - exit the current database connection" + Style.RESET_ALL)
+                        print(Fore.WHITE + "create table <t_name> ... - create the table")
+                        print("desc - describe command")
+                        print("select  - select command ")
+                        print("alter  - alter command ")
+                        print("update  - update command ")
+                        print("show tables - show all the tables available in current database")
+                        print(Fore.YELLOW + "-----------------------------------------------------------------------" + Style.RESET_ALL)
                     else:
                         try:
                             cursor.execute(command)
@@ -337,7 +359,7 @@ else:
         file.close()
         print()
         # Print some information about DonutDB
-        print(Fore.CYAN + f"Welcome to DonutDB {VERSION} by {AUTHOR}")
+        print(Fore.CYAN + f"DonutDB {VERSION} \n - {AUTHOR}")
         print("A lightweight and fast relational database management system written in Python")
         print("Enter 'help' for more information" + Style.RESET_ALL)
         # Define a function to execute SQL commands on a database
@@ -358,7 +380,17 @@ else:
                         print(table) # Print the table
                     except sqlite3.Error as err:
                         print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
-                # If the command is 'show databases', list the files in the current directory
+                elif "desc" in command or "DESC" in command:
+                    try:
+                        desc_candidate = command.split(" ")[1]
+                        cursor.execute(f"PRAGMA table_info({desc_candidate})")
+                        rows = cursor.fetchall()
+                        desc_table = PrettyTable(["Column ID","Column Name","Data Type","Not Null?","Default Value","Primary Key"])
+                        for row in rows:
+                            desc_table.add_row(row)
+                        print(desc_table)
+                    except sqlite3.Error as err:
+                        print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
                 elif "alter" in command or "ALTER" in command:
                     try:
                         cursor.execute(command)
@@ -400,13 +432,14 @@ else:
                 elif command == "help":
                     print(Fore.YELLOW + "DonutDB Help")
                     print("-----------------------------------------------------------------------")
-                    print("exit - exit the current database connection")
-                    print("create table <t_name> ... - create the table")
-                    print("select  - select command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                    print("alter  - alter command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                    print("update  - update command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                    print(Fore.YELLOW + "show tables - show all the tables available in current database")
-                    print("-----------------------------------------------------------------------" + Style.RESET_ALL)
+                    print("exit - exit the current database connection" + Style.RESET_ALL)
+                    print(Fore.WHITE + "create table <t_name> ... - create the table")
+                    print("desc - describe command")
+                    print("select  - select command ")
+                    print("alter  - alter command ")
+                    print("update  - update command ")
+                    print("show tables - show all the tables available in current database")
+                    print(Fore.YELLOW + "-----------------------------------------------------------------------" + Style.RESET_ALL)
                 else:
                     try:
                         cursor.execute(command)
@@ -491,7 +524,7 @@ else:
             print("Access Granted..!")
             print()
             # Print some information about DonutDB
-            print(Fore.CYAN + f"Welcome to DonutDB {VERSION} by {AUTHOR}")
+            print(Fore.CYAN + f"DonutDB {VERSION} \n - {AUTHOR}")
             print("A lightweight and fast relational database management system written in Python")
             print("Enter 'help' for more information" + Style.RESET_ALL)
             # Define a function to execute SQL commands on a database
@@ -512,7 +545,17 @@ else:
                             print(table) # Print the table
                         except sqlite3.Error as err:
                             print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
-                    # If the command is 'show databases', list the files in the current directory
+                    elif "desc" in command or "DESC" in command:
+                        try:
+                            desc_candidate = command.split(" ")[1]
+                            cursor.execute(f"PRAGMA table_info({desc_candidate})")
+                            rows = cursor.fetchall()
+                            desc_table = PrettyTable(["Column ID","Column Name","Data Type","Not Null?","Default Value","Primary Key"])
+                            for row in rows:
+                                desc_table.add_row(row)
+                            print(desc_table)
+                        except sqlite3.Error as err:
+                            print(Fore.RED + f"Invalid query: {err}" + Style.RESET_ALL)
                     elif "alter" in command or "ALTER" in command:
                         try:
                             cursor.execute(command)
@@ -554,13 +597,14 @@ else:
                     elif command == "help":
                         print(Fore.YELLOW + "DonutDB Help")
                         print("-----------------------------------------------------------------------")
-                        print("exit - exit the current database connection")
-                        print("create table <t_name> ... - create the table")
-                        print("select  - select command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                        print("alter  - alter command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                        print("update  - update command " + Fore.GREEN + "(SQL)" + Style.RESET_ALL)
-                        print(Fore.YELLOW + "show tables - show all the tables available in current database")
-                        print("-----------------------------------------------------------------------" + Style.RESET_ALL)
+                        print("exit - exit the current database connection" + Style.RESET_ALL)
+                        print(Fore.WHITE + "create table <t_name> ... - create the table")
+                        print("desc - describe command")
+                        print("select  - select command ")
+                        print("alter  - alter command ")
+                        print("update  - update command ")
+                        print("show tables - show all the tables available in current database")
+                        print(Fore.YELLOW + "-----------------------------------------------------------------------" + Style.RESET_ALL)
                     else:
                         try:
                             cursor.execute(command)
