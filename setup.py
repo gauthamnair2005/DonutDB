@@ -1,3 +1,5 @@
+from cx_Freeze import setup, Executable
+
 setup(
     name = "DonutDB Velocity Developer Preview",
     version = "24.0.0.128",
