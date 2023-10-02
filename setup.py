@@ -1,4 +1,4 @@
-from cx_Freeze import setup, Executable
+from cx_Freeze import setup, Executable # Import setup and Executable from cx_Freeze only
 
 setup(
     name = "DonutDB Velocity Developer Preview",
