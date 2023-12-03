@@ -8,7 +8,7 @@ from tabulate import tabulate # for databases listing in tabular form
 import getpass
 import hashlib
 # Define constants
-VERSION = "24.00.00.256+ Velocity Developer Preview"
+VERSION = "24.00.00.512p+ Velocity Developer Preview"
 AUTHOR = "Gautham Nair"
 PROMPT = "DonutDB $ "
 CREATE_DB = "create database"
